@@ -1,0 +1,176 @@
+1A
+Solution :-
+     #include <stdio.h>
+    int main(void)
+    {
+        long long n,m,a,b,c;
+        scanf("%lld",&n);
+        scanf("%lld",&m);
+        scanf("%lld",&a);
+        if(n%a==0)
+        {
+            b=n/a;
+        }
+        else
+        {
+            b=(n/a)+1;
+        }
+        if(m%a==0)
+        {
+            c=m/a;
+        }
+        else
+        {
+            c=(m/a)+1;
+        }
+        printf("%lld",b*c);
+        return 0;
+    }
+
+Explanation :-
+For n meters we require n/a number of flagstones and for m meters we require m/a number of flagstones. So total number of flagstones required will be (n/a) * (m/a). This is only possible if
+n/a and m/a have no remainder left. If any of them or both has remainder then we will require ((n/a)+1) instead of n/a and ((m/a)+1) instead of m/a respectively. So we have three options
+i) No remainder left - required number of flagstones = (n/a) * (m/a).
+ii) Either of one has remainder left - ((n/a)+1) * (m/a) or (n/a) * ((m/a)+1).
+iii) Both has remainder left - ((n/a)+1) * ((m/a)+1).
+
+50A
+Solution :-
+    #include <stdio.h>
+    int main(void)
+    {
+        int M,N,a,b;
+        scanf("%d",&M);
+        scanf("%d",&N);
+        printf("%d",M*N/2);
+        return 0;
+    }
+
+Explanation :-
+As the given condition says that no two dominos should overlap, should lie entirely inside the board andit is allowed to touch the edges of the board. So total number of dominos that can
+be placed on rectangular board is total area of square of board divided by area of domino piece i.e (M * N) / 2.
+
+96A
+Solution :-
+    #include <stdio.h>
+    #include <string.h>
+    int main()
+    {
+        int a,i,j,k,l;
+        char p[100];
+        scanf("%s",p);
+        a=strlen(p);
+        char z[]="0000000";
+        char y[]="1111111";
+        if(a<7)
+        {
+            printf("NO");
+        }
+        else
+        {
+            for(i=0;i<a-7+1;i++)
+            {
+                for(j=0;j<7;)
+                {
+                    if(p[i+j]==z[j])
+                    {
+                        j++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if(j==7)
+                {
+                    printf("YES");
+                    break;
+                }
+            }
+            if(i==a-7+1)
+            {
+                for(k=0;k<a-7+1;k++)
+                {
+                    for(l=0;l<7;)
+                    {
+                        if(p[k+l]==y[l])
+                        {
+                            l++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    if(l==7)
+                    {
+                        printf("YES");
+                        break;
+                    }
+                }
+            }
+            if(k==a-7+1)
+            {
+                printf("NO");
+            }
+            
+        }
+        return 0;
+    }
+
+Expalanation :-
+If there are at least 7 players of some team standing one after another, then the situation is considered dangerous. So the strings whose length is less than 7 is not considered dangerous.
+If we have strings with length 7 or more than 7 then, we first compare the elements of given string with string of seven 0 one by one. We take first 7 elements of given string and if the 
+first element of given string matches with the zero then it increments j and goes to check for the next element. If it goes on matching then j goes on incrementing till 7. The moment j=7
+the situation is considered to be dangerous. For j=7 it breaks the loop and prints yes and it breaks and ends the program. Supppose if we get any mismatch before j becomes equal to 7 then 
+it breaks the loop and goes on take the next set of 7 elements to match and same process id repeated. i<a-7+1 because we are matching a set of 7 element and when i=a-7+1 we do not have 7 
+element instead we have only 6 and last one is null. So there is no use of matching. When i=a-7+1, it says that there was no string of 7 0's found in the given string. So it might contain 
+string of 7 1's and we need to also check for it. For matching the same process is used as we used to match for 0's. If we do not find string of 7 1's then k=a-7+1 and it prints NO 
+saying that the situation is not dangerous.
+
+1064A
+Solution :- 
+    #include<stdio.h>
+    int main()
+    {
+        int a,b,c;
+        scanf("%d",&a);
+        scanf("%d",&b);
+        scanf("%d",&c);
+        if(c==a+b)
+        {
+            printf("1");
+        }
+        else if(b==a+c)
+        {
+            printf("1");
+        }
+        else if(a==b+c)
+        {
+            printf("1");
+        }
+        else if(c>a+b)
+        {
+            printf("%d",(c+1)-(a+b));
+        }
+        else if(b>a+c)
+        {
+            printf("%d",(b+1)-(a+c));
+        }
+        else if(a>b+c)
+        {
+            printf("%d",(a+1)-(b+c));
+        }
+        else
+        {
+            printf("0");
+        }
+        return 0;
+    }
+
+Explanation :-
+The condition for any three lenghts to form triangle is "the sum of the lengths of any two sides of a triangle has to be greater than the length of the third side". If sum of the lengths
+of any two sides of a triangle is equal to the length of the third side then increasing the length of any one side by one length can gives us a triangle of positive area. So she will 
+take 1 minute so we print 1. If sum of the lengths of any two sides of a triangle is less than the length of the third side then by adding one to the larger side and subtracting it from
+the sum of other two sides will give us the minimum length that should be increased to form a triangle of positive area. The minimum length is the minimum minutes that she will require 
+to make a triangle of positive area. If the above two conditions are not found then it means that the triangle is of positive area.
